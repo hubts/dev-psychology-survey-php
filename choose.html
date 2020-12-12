@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="choose.css">
+  <style>
+    #center {
+            width: 800px;
+            height: 500px;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    #center div:last-child {
+      text-align: center;
+    } 
+   </style>
+</head>
+
+<body>
+  <div id="center">
+    <form action="saving.php" method="POST">
+      <div id="info">
+        <p>사례금과 입금정보를 기입해주세요.</p>
+        <table>
+          <tr>
+            <td>①</td>
+            <td>은행</td>
+            <td><input type="text" name="bank" /></td>
+          </tr>
+          <tr>
+            <td>②</td>
+            <td>계좌번호</td>
+            <td><input type="text" name="account" /></td>
+          </tr>
+          <tr>
+            <td>③</td>
+            <td>금액</td>
+            <td>(커서를 움직여서 금액을 선택해주세요.)</td>
+          </tr>
+        </table>
+      </div>
+      <div class="slidecontainer">
+        <input type="range" min="0" max="8000" value="4000" step="100" class="slider" id="myRange">
+      </div>
+      <div id="charge" style="height:100px;">
+        <div style="float:left;text-align:center;">
+          <p>내가 받을 금액</p>
+          <p style="border: 1px solid black;"><span id="mine"></span></p>
+        </div>
+        <div style="float:right;text-align:center;">
+          <p>상대가 받을 금액</p>
+          <p style="border: 1px solid black;"><span id="yours"></span></p>
+        </div>
+      </div>
+      <div style="height:30px;">
+        <input style="font-size:15px;width:100px;" type="submit" value="제출"/>
+        <input type="hidden" id="fm" name="form_mine" value="4000"/>
+        <input type="hidden" id="fy" name="form_yours" value="4000"/>
+      </div>
+    </form>
+  </div>
+  <script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("mine");
+    var output2 = document.getElementById("yours");
+    output.innerHTML = slider.value;
+    output2.innerHTML = 8000 - slider.value;
+    document.getElementById("fm").value = slider.value;
+    document.getElementById("fy").value = 8000 - slider.value;
+
+    slider.oninput = function () {
+      output.innerHTML = this.value;
+      output2.innerHTML = 8000 - this.value;
+      document.getElementById("fm").value = slider.value;
+      document.getElementById("fy").value = 8000 - slider.value;
+    }
+  </script>
+</body>
