@@ -11,5 +11,5 @@
     fwrite($myfile, $y);
     fwrite($myfile, "\r\n");
     fclose($myfile);
-    Header("Location:finish.html");
+    Header("Location: finish.html");
 ?>
